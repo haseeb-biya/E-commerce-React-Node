@@ -1,0 +1,73 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add/View Users</h3>
+            <div class=" clearfix">
+                <a href="/users/add" class="btn btn-success float-right"><i class="far fa-plus"></i> Add
+                    User</a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Is Admin?</th>
+                        <th>Account Status</th>
+                        <th>Action(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td>{{_id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{email}}</td>
+                        <td>{{phone_no}}</td>
+                        {{#if is_Admin}}
+                        <td><span class="badge badge-success">Yes</span></td>
+                        {{else}}
+                        <td><span class="badge badge-danger">No</span></td>
+                        {{/if}}
+                        {{#if is_Admin}}
+                        <td>NA</td>
+                        {{else}}
+                        {{#if is_Active}}
+                        <td>
+                            <span class="badge badge-success">Active</span>
+                            <a class="btn btn-danger btn-sm"
+                                href='/users/status/{{this._id}}?status=false'>Deactivate</a>
+                        </td>
+                        {{else}}
+                        <td>
+                            <span class="badge badge-danger">Inactive</span>
+                            <a class="btn btn-success btn-sm" href='/users/status/{{this._id}}?status=true'>Activate</a>
+                        </td>
+                        {{/if}}
+                        <td>
+                            {{/if}}
+                            {{#if this.is_Admin}}
+                        <td>NA</td>
+                        {{else}}
+                        <a class="btn btn-success btn-sm" href='/users/edit/{{this._id}}'>Edit</a>
+
+                        <a href='#' type="button" class="btn btn-danger btn-sm my-2"
+                            onClick='openModal(`{{_id}}`,`/users/delete`,`Are you sure you want to Delete Selected User`)'>Delete</a>
+                        {{/if}}
+                        </td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{{> _modals}}

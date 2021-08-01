@@ -1,0 +1,44 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add/View Brand</h3>
+            <div class=" clearfix">
+                <button type="button" class="btn btn-success float-right" onClick='openAddModal(`/add/brand`
+                                ,`Brand`,`Add Brand:`,`Please add a brand name`)'><i class="far fa-plus"></i> Add
+                    Brand</button>
+            </div>
+        </div>
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Action(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each brands}}
+                    <tr>
+                        <td>{{this._id}}</td>
+                        <td>{{this.name}}</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href='/edit/brand/{{this._id}}'>Edit</a>
+
+                            <button type="button" class="btn btn-danger btn-sm del" onClick='openModal(`{{this._id}}`,`/delete/brand`
+                                ,`Deleting the selected brand may result in deleting the corresponding product(s)
+                                related to this brand.Are you sure you want to delete it?`)'>Delete</button>
+                        </td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{> _modals}}

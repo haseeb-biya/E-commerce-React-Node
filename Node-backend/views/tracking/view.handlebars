@@ -1,0 +1,62 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">View Orders</h3>
+            <div class=" clearfix">
+
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Tracking ID</th>
+                        <th>Order Id</th>
+                        <th>Courier Name</th>
+                        <th>Customer Name</th>
+                        <th>Payment</th>
+                        <th>Delivered?</th>
+                        <th>Address</th>
+
+                        {{!-- <th>Action(s)</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each tracking}}
+                    <tr>
+                        <td>{{_id}}</td>
+                        <td>{{order._id}}</td>
+                        <td>
+                            {{name}}
+                        </td>
+                        <td>{{user.name}}</td>
+                        {{#if order.isPaid}}
+                        <td>Prepaid</td>
+                        {{else}}
+                        <td>Postpaid</td>
+                        {{/if}}
+                        {{#if order.isDelivered}}
+                        <td>Delivery Date : {{prettifyDate order.deliveredAt}}</td>
+                        {{else}}
+                        <td>Under Processing</td>
+                        {{/if}}
+                        <td>{{order.shippingAddress.address}}<br>{{order.shippingAddress.city}}<br>{{order.shippingAddress.postalCode}}
+                        </td>
+
+                        {{!-- <td>
+                            <a class="btn btn-success btn-sm mt-2" href='/tracking/view/details/{{this._id}}'>View
+                                Details</a>
+                            <br>
+                        </td> --}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{{> _modals}}

@@ -1,0 +1,21 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Edit Category</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form action="/edit/category/{{category._id}}" method="post">
+                <div class="mb-3">
+                    <label for="category_name" class="form-label">Category Name</label>
+                    <input type="text" class="form-control" value={{category.name}} id="name" name="name">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

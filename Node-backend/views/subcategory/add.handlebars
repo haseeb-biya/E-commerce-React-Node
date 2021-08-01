@@ -1,0 +1,30 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add Sub Category</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form action="/subcategory/add" method="POST">
+                <div class="mb-3">
+                    <label for="subcategory_name" class="form-label">Parent Category Name</label>
+                    <select class="form-control" name="parent_category" required>
+                        <option value="">--Please select a Parent Category--</option>
+                        {{#each categories}}
+                        <option value={{this._id}}>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="subcategory_name" class="form-label">Sub Category Name</label>
+                    <input type="text" class="form-control" required id="name" name="name">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

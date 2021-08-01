@@ -1,0 +1,61 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Settings</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form action="/admin/settings" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="{{wsettings._id}}" name="id" />
+                <div class="mb-3">
+                    <label class="form-label">Heading Title</label>
+                    <input type="text" class="form-control" value="{{wsettings.head_title}}" id="head_title"
+                        name="head_title">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Heading Description</label>
+                    <input type="text" class="form-control" value="{{wsettings.head_desc}}" id="head_desc"
+                        name="head_desc">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Footer Description</label>
+                    <input type="text" class="form-control" value="{{wsettings.footer_desc}}" id="footer_desc"
+                        name="footer_desc">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Facebook Url</label>
+                    <input type="text" class="form-control" value="{{wsettings.facebook_url}}" id="facebook_url"
+                        name="facebook_url">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Instagram Url</label>
+                    <input type="text" class="form-control" value="{{wsettings.insta_url}}" id="insta_url"
+                        name="insta_url">
+                </div>
+                <div class="mb-3">{{head_title}}
+                    <p>Current Logo:
+                        <img src="/img/uploads/{{wsettings.website_logo}}" style="width:100px" class="img-responsive" />
+                    </p>
+                    <label class="form-label">Website Logo</label>
+                    <input type="file" class="form-control" value="{{wsettings.website_logo}}" id="website_logo"
+                        name="website_logo">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Support Email</label>
+                    <input type="text" class="form-control" value="{{wsettings.support_email}}" id="support_email"
+                        name="support_email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Support Contact</label>
+                    <input type="text" class="form-control" value="{{wsettings.support_contact}}" id="support_contact"
+                        name="support_contact">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

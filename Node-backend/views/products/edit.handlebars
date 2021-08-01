@@ -1,0 +1,103 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div id="message"></div>
+        <div class="card-body">
+            <form action="/product/edit/{{id}}" method="POST" name="myEditProductForm" enctype="multipart/form-data">
+                {{#each product}}
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-xs-12 col-6">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" required id="name" value="{{this.name}}"
+                                name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Description</label>
+                            <textarea class="form-control" required id="description" name="description"
+                                value="{{this.description}}">{{this.description}}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Category</label>
+
+                            <select name="category" onchange="openSubcat(this.value)" class="form-control" required>
+                                <option value="">--Please select a Category--</option>
+                                {{#each ../categories}}
+                                {{#ifCond this.name '==' ../this.category.name}}
+                                <option value={{this._id}} selected>{{this.name}}</option>
+                                {{else}}
+                                <option value={{this._id}}>{{this.name}}</option>
+                                {{/ifCond}}
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Sub-Category <img src='/img/loader.gif'
+                                    class="img-responsive hide_loader" id="loader" /></label>
+                            <div id="subcat">
+                                <select name="subcategory" class="form-control" required>
+
+                                    <option value="">--Please select a SubCategory--</option>
+                                    {{#each ../subcategory}}
+                                    {{#ifCond ../this.subcategory.name '==' this.name}}
+                                    <option value={{this._id}} selected>{{this.name}}</option>
+                                    {{else}}
+                                    <option value={{this._id}}>{{this.name}}</option>
+                                    {{/ifCond}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <p id="error_sub" class="error-sub"></p>
+                            <div class="mb-3">
+                                <label for="images" class="form-label">Current Images</label>
+                                {{#each this.image}}
+                                <img src="/img/uploads/{{this.filename}}" class="img-fluid" style="width:100px;" />
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 col-6">
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Brand</label>
+
+                            <select name="brand" class="form-control" required>
+                                <option value="">--Please select a product brand--</option>
+                                {{#each ../brand}}
+                                {{#ifCond ../this.brand.name '==' this.name}}
+                                <option value={{this._id}} selected>{{this.name}}</option>
+                                {{else}}
+                                <option value={{this._id}}>{{this.name}}</option>
+                                {{/ifCond}}
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Price</label>
+                            <input type="number" class="form-control" value="{{this.price}}" required id="price"
+                                name="price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Count In Stock</label>
+                            <input type="number" class="form-control" value="{{this.countInStock}}" required
+                                id="countInStock" name="countInStock">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Product Image(s)</label>
+                            <p style="color:red">In case if you wish to update a single Image you still need to update
+                                entire image bunch</p>
+                            <input type="file" class="form-control" multiple accept='image/*' id="product_image"
+                                name="product_image">
+                        </div>
+                        <div class="col-auto float-right">
+                            <button type="submit" class="btn btn-primary mb-3">Update</button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </form>
+        </div>
+    </div>
+</div>

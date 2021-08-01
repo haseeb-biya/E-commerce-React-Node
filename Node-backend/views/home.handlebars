@@ -1,0 +1,94 @@
+{{> _postLogin}}
+<div class="container">
+    <h2 style="padding:0px 10px">Users</h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{userCount}}</h3>
+                    <p>Total Users</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/users/view" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{activeCount}}</h3>
+                    <p>Active Users</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/users/active" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{inactiveCount}}</h3>
+                    <p>Inactive Users</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/users/inactive" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <h2 style="padding:5px 10px">Category</h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{categoryCount}}</h3>
+                    <p>Total Category</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/category/view" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <h2 style="padding:5px 10px">Product</h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{productCount}}</h3>
+                    <p>Total Products</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/products/view" class="small-box-footer">More info <i
+                        class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <h2 style="padding:5px 10px">Order</h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{orderCount}}</h3>
+                    <p>Total Orders</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/orders/view" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

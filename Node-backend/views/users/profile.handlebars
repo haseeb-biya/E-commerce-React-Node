@@ -1,0 +1,64 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div id="message"></div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-6">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Admin Details</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form action="/users/admin/edit/{{adminUser._id}}" method="post" name="myAdminEditForm"
+                        onsubmit="return validateEditAdminForm()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Admin Name</label>
+                            <input type="text" class="form-control" value="{{adminUser.name}}" id="name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Admin Email</label>
+                            <input type="email" class="form-control" value="{{adminUser.email}}" id="email"
+                                name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Admin Phone No.</label>
+                            <input type="text" class="form-control" value="{{adminUser.phone_no}}" id="phone_no"
+                                name="phone_no">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-3">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12 col-6">
+                <div class="card-header">
+                    <h3 class="card-title">Change Admin Password</h3>
+                </div>
+                <div class="card-body">
+
+                    <form action="/users/admin/edit/password/{{adminUser._id}}" method="post"
+                        name="myAdminEditPasswordForm" onsubmit="return validateEditAdminPasswordForm()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Old Password</label>
+                            <input type="password" class="form-control" value="{{opassword}}" id="opassword"
+                                name="opassword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">New Password</label>
+                            <input type="password" class="form-control" value="" id="password" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" value="" id="cnpassword" name="cnpassword">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-3">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

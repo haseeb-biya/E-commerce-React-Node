@@ -1,0 +1,55 @@
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!-- Bootstrap 4 -->
+
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"
+    integrity="sha512-++c7zGcm18AhH83pOIETVReg0dr1Yn8XTRw+0bWSIWAVCAwz1s2PwnSj4z/OOyKlwSXc4RLg3nnjR22q0dhEyA=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/pages/dashboard.min.js"
+    integrity="sha512-JYbrflxk4T5FIkvgjFppx6TH6wytjQ2J4yANNr9vE06mWP9wK+ovddxPtxDkv/lma6RtLnTLJUS33DhKmo6icg=="
+    crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src='/js/formsValidations.js'>
+</script>
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+
+</script>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".alert").fadeTo(3000, 500).slideUp(500, function () {
+            $(".alert").slideUp(500);
+        });
+
+    });
+    function slideUp() {
+        $(".alert").fadeTo(3000, 500).slideUp(500, function () {
+            $(".alert").slideUp(500);
+        });
+    }
+</script>
+</body>
+
+</html>

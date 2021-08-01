@@ -1,0 +1,56 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add/View Users</h3>
+            <div class=" clearfix">
+                <a href="/product/add" class="btn btn-success float-right"><i class="far fa-plus"></i> Add
+                    Product</a>
+            </div>
+        </div>
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>count In Stock</th>
+                        <th>Rating</th>
+                        <th>Parent Category</th>
+                        <th>Action(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td>{{_id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{trimString description}}</td>
+                        <td>{{brand.name}}</td>
+                        <td>{{price}}</td>
+                        {{#ifCond countInStock '==' 0}}
+                        <td><span class="badge badge-danger">No Stock</span></td>
+                        {{else}}
+                        <td><span class="badge badge-success">{{countInStock}}</span></td>
+                        {{/ifCond}}
+                        <td>{{rating}}</td>
+                        <td>{{category.name}}</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href='/product/edit/{{_id}}'>Edit</a>
+                            <a href='#' type="button" class="btn btn-danger btn-sm my-2" onClick='openModal(`{{product._id}}`,`/delete/product`
+                                ,`Are you sure you want to delete the selected Product?`)'>Delete</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{> _modals}}

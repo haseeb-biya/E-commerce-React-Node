@@ -1,0 +1,120 @@
+{{> _postLogin}}
+<section class="content">
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-3 col-xs-12"></div>
+        <div class="card text-center">
+            <div class="card-header">
+                <h3 class="card-title">Update Order Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12 order-1 order-md-2 text-center">
+                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i>Order Id: #{{order._id}}</h3>
+                        <hr>
+                        <div class="text-muted">
+                            <p class="text-sm">Customer Name
+                                <b class="d-block">{{order.user.name}}</b>
+                            </p>
+                            <p class="text-sm">Shipping Address
+                                <b
+                                    class="d-block">{{order.shippingAddress.address}},{{order.shippingAddress.city}},{{order.shippingAddress.postalCode}}</b>
+                            </p>
+                            <p class="text-sm">Total Price
+                                <b class="d-block">{{order.totalPrice}}</b>
+                            </p>
+                            {{#ifCond order.orderStatus '==' 'Shipping'}}
+                            <p class="text-sm">Courier Name
+                                <b class="d-block">{{tracking.name}}</b>
+                            </p>
+                            <p class="text-sm">Courier Name
+                                <b class="d-block">{{tracking.trackingId}}</b>
+                            </p>
+                            {{/ifCond}}
+                        </div>
+                        <form action="/order/status/{{order._id}}" method="post" name="myorderStatusForm">
+                            <h3 class="mt-4 text-muted">Order Details</h3>
+                            <hr>
+                            <label class="text-left">Current Order Status:
+                                <span class="badge badge-success">{{order.orderStatus}}</span></label><br>
+                            <br>
+                            <label class="text-left">Change Status:</label>
+                            <select class="form-control" onchange="checkForPaid(this.value,{{order.isPaid}})"
+                                name="orderStatus" required>
+                                <option value="">--Select Status--</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Delivered">Delivered</option>
+                            </select><br><br>
+                            <label class="text-left">Current Is Paid: {{#if order.isPaid}}
+                                <span class="badge badge-success">Yes</span>
+                                {{else}}
+                                <span class="badge badge-danger">No</span>
+                                {{/if}}</label><br><br>
+                            {{#ifCond order.isPaid '!=' true}}
+                            <label class="text-left">Change Paid Status: </label>
+                            <select class="form-control" name="isPaid" required>
+                                <option value="">--Select Status--</option>
+                                {{#if order.isPaid}}
+                                <option value="true" selected>Yes</option>
+                                <option value="false">No</option>
+                                {{else}}
+                                <option value="true">Yes</option>
+                                <option value="false" selected>No</option>
+                                {{/if}}
+                            </select><br>
+                            {{/ifCond}}
+                            {{#if order.isPaid}}
+                            <label class="text-left">Paid At: {{order.paidAt}}</label>
+                            {{/if}}
+                            <div id="paidDate" class="paidDate">
+
+                                {{#ifCond order.isPaid '==' false}}
+                                <label class="text-left">Paid Date: </label>
+                                <input type='date' class="form-control" required name='paidAt'
+                                    placeholder="Please select a Date" />
+                                {{/ifCond}}
+                            </div>
+                            <br>
+                            <label class="text-left">Current Is Delivered: {{#if order.isDelivered}}
+                                <span class="badge badge-success">Yes</span>
+                                {{else}}
+                                <span class="badge badge-danger">No</span>
+                                {{/if}}</label><br><br>
+                            <label class="text-left">Change Delivered Status: </label>
+                            <select class="form-control" name="isDelivered" required>
+                                <option value="">--Select Status--</option>
+                                {{#if isPaid}}
+                                <option value="true" selected>Yes</option>
+                                <option value="false">No</option>
+                                {{else}}
+                                <option value="true">Yes</option>
+                                <option value="false" selected>No</option>
+                                {{/if}}
+                            </select><br><br>
+                            {{#if order.isDelivered}}
+                            <label class="text-left">Delivery Date: {{order.deliveredAt}}</label>
+                            {{/if}}
+
+                            <div id="deliveryDate" class="deliveryDate">
+                                <label class="text-left">Delivered Date:</label>
+                                <input type='date' class="form-control" required name='deliveredAt'
+                                    placeholder="Please select a delivery date" />
+                            </div>
+
+                            {{#ifCond order.orderStatus '!=' 'Delivered'}}
+                            <div class="text-center mt-5 mb-3">
+                                <input type="submit" class="btn btn-sm btn-primary" />
+                            </div>
+                            {{/ifCond}}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="col-6 col-xs-12"></div>
+    </div>
+    <!-- /.card -->
+
+</section>

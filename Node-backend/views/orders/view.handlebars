@@ -1,0 +1,121 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">View Orders</h3>
+            <div class=" clearfix">
+
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Total Price</th>
+                        <th>Is Paid?</th>
+                        <th>Delivered?</th>
+                        <th>User Name</th>
+                        <th>Order Status</th>
+                        <th>Tracking Details</th>
+                        <th>Order Date</th>
+                        <th>Action(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each orders}}
+                    <tr>
+                        <td>{{_id}}</td>
+                        <td>₹{{totalPrice}}</td>
+                        {{#if isPaid}}
+                        <td><span class="badge badge-success">Yes</span>
+                            <p><strong> Payment Date: {{ prettifyDate paidAt}}</strong></p>
+                            {{#ifCond paymentMethod '==' 'UPI/DebitCard/CreditCard/NetBanking'}}
+                            <p><strong>TXN ID: {{txnId}}</strong></p>
+                            {{/ifCond}}
+                        </td>
+                        {{else}}
+                        <td><span class="badge badge-danger">No</span></td>
+                        {{/if}}
+                        {{#if isDelivered}}
+                        <td><span class="badge badge-success">Yes</span>
+                            <p><strong>Delivery Date: {{prettifyDate deliveredAt}}</strong></p>
+                        </td>
+                        {{else}}
+                        <td><span class="badge badge-danger">No</span></td>
+                        {{/if}}
+                        <td>
+                            <p>Name: {{user.name}}
+                            </p>
+                            <p>Email: {{user.email}}
+                            </p>
+                        </td>
+                        {{#ifCond orderStatus '==' 'Order Placed'}}
+                        <td><span class="badge badge-success">{{orderStatus}}</span></td>
+                        {{/ifCond}}
+                        {{#ifCond orderStatus '==' 'Processing'}}
+                        <td><span class="badge badge-warning">{{orderStatus}}</span></td>
+                        {{/ifCond}}
+                        {{#ifCond orderStatus '==' 'Shipping'}}
+                        <td><span class="badge badge-warning">{{orderStatus}}</span></td>
+                        {{/ifCond}}
+                        {{#ifCond orderStatus '==' 'Delivered'}}
+                        <td><span class="badge badge-success">{{orderStatus}}</span></td>
+                        {{/ifCond}}
+                        {{#ifCond orderStatus '==' 'Failed'}}
+                        <td><span class="badge badge-danger">{{orderStatus}}</span></td>
+                        {{/ifCond}}
+                        {{#ifCond orderStatus '==' 'Cancelled'}}
+                        <td><span class="badge badge-danger">{{orderStatus}}</span></td>
+                        {{/ifCond}}
+                        <td>
+                            {{#ifCond orderStatus '==' 'Order Placed'}}
+                            Not Yet Shipped
+                            {{/ifCond}}
+                            {{#ifCond orderStatus '==' 'Processing'}}
+                            <a href='/order/assign/tracking/{{_id}}' class="btn btn-success btn-sm">Assign Tracking</a>
+                            {{/ifCond}}
+                            {{#ifCond orderStatus '==' 'Shipping'}}
+                            <p>Courier Name: {{tracking.name}}<br>Tracking Id: {{tracking.trackingId}}</p>
+                            {{/ifCond}}
+                            {{#ifCond orderStatus '==' 'Delivered'}}
+                            Delivered
+                            {{/ifCond}}
+                            {{#ifCond orderStatus '==' 'Cancelled'}}
+                            Cancelled
+                            {{/ifCond}}
+                            {{#ifCond orderStatus '==' 'Failed'}}
+                            Failed
+                            {{/ifCond}}
+                        </td>
+                        <td>
+                            {{prettifyDate createdAt}}
+                        </td>
+
+                        <td>
+                            <a class="btn btn-success btn-sm mt-2" href='/order/view/details/{{this._id}}'>View
+                                Details</a>
+                            <br>
+                            {{#ifCond orderStatus '!=' 'Delivered'}}
+                            <a class="btn btn-warning btn-sm " href='/order/status/{{_id}}'>Change Status</a>
+                            {{/ifCond}}
+                            {{#ifCond orderStatus '!=' "Failed"}}
+                            {{#ifCond orderStatus '!=' 'Delivered'}}
+                            {{#ifCond orderStatus '!=' 'Cancelled'}}
+                            <a class="btn btn-danger btn-sm mt-2" href="/order/cancel/{{_id}}">Cancel Order</a>
+                            {{/ifCond}}
+                            {{/ifCond}}
+                            {{/ifCond}}
+                        </td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{{> _modals}}

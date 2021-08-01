@@ -1,0 +1,34 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Edit Category</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            {{#each errors}}
+            <div class="alert alert-danger">{{text}}</div>
+            {{/each}}
+            <div id="message"></div>
+            <form action="/users/edit/{{user._id}}" method="post" name="myEditForm"
+                onsubmit="return validateEditUserForm()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">User Name</label>
+                    <input type="text" class="form-control" value="{{user.name}}" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">User Email</label>
+                    <input type="email" class="form-control" value="{{user.email}}" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">User Phone No.</label>
+                    <input type="text" class="form-control" value="{{user.phone_no}}" id="phone_no" name="phone_no">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

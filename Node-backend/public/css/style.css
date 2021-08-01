@@ -1,0 +1,23 @@
+.display_loader {
+  width: 30px;
+  margin: 0px 10px;
+}
+.hide_loader {
+  display: none;
+}
+.error-sub {
+  color: red;
+}
+.mt-2 {
+  margin: 5px 0px;
+}
+.deliveryDate {
+  display: none;
+}
+.paidDate {
+  display: none;
+}
+.text-left {
+  text-align: left;
+  float: left;
+}

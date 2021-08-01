@@ -1,0 +1,33 @@
+{{> _postLogin}}
+<div class="container">
+    {{> _msg}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add Tracking Order for #{{order._id}}</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            {{#each errors}}
+            <div class="alert alert-danger">{{text}}</div>
+            {{/each}}
+            <div id="message"></div>
+            <form action="/order/assign/tracking/{{order._id}}" method="post" name="mytrackingForm">
+                <label>
+                    <h2>Order Id:# {{order._id}} </h2>
+                </label>
+                <input type="hidden" value="{{order._id}}" name="order" />
+                <div class="mb-3">
+                    <label for="name" class="form-label">Courier Name</label>
+                    <input type="text" required class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Tracking Id</label>
+                    <input type="text" required class="form-control" id="trackingId" name="trackingId">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
